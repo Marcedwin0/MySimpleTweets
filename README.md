@@ -246,7 +246,7 @@ That's all you need to get started. From here, hook up your activities and their
 
 ### Extras
 
-#### Loading Images with Picass
+#### Loading Images with Picasso
 
 If you want to load a remote image url into a particular ImageView, you can use Picasso to do that with:
 
@@ -260,6 +260,7 @@ This will load an image into the specified ImageView and resize the image to fit
 #### Logging Out
 
 You can log out by clearing the access token at any time through the client object:
+<img src="MySimpleTweets.gif" alt="tag" />
 
 ```java
 RestClient client = RestApplication.getRestClient();
