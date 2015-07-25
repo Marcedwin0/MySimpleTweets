@@ -40,15 +40,36 @@ public class TwitterClient extends OAuthBaseClient {
 	// GET statuses/home_timeline.json
 	// Count = 25
 	// Since_id = 1
-	public void getHomeTimeline(AsyncHttpResponseHandler handler) {
+
+
+	public void getHomeTimeline (AsyncHttpResponseHandler handler) {
 		String apiUrl = getApiUrl("statuses/home_timeline.json");
-		// Specify the params
+		// Add more tweets
+		i = i + 25;
+		// Params to load more
 		RequestParams params = new RequestParams();
-		params.put("count", 25);
+		params.put("count", i);
 		params.put("since_id", 1);
 		// Execute the request
 		getClient().get(apiUrl, params, handler);
 	}
+
+
+	Integer i = 25;
+	public void getHomeTimelineMore (AsyncHttpResponseHandler handler) {
+		String apiUrl = getApiUrl("statuses/home_timeline.json");
+		// Add more tweets
+		i = i + 25;
+		// Params to load more
+		RequestParams params = new RequestParams();
+		params.put("count", i);
+		params.put("since_id", 1);
+		// Execute the request
+		getClient().get(apiUrl, params, handler);
+	}
+
+
+
 
 	// COMPOSE TWEET
 

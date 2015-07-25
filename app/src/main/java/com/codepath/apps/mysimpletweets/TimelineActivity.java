@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.codepath.apps.mysimpletweets.R;
 import com.codepath.apps.mysimpletweets.models.Tweet;
@@ -24,6 +25,7 @@ public class TimelineActivity extends ActionBarActivity {
     private TweetsArrayAdapter aTweets;
     private ListView lvTweets;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +41,32 @@ public class TimelineActivity extends ActionBarActivity {
         // Get the Client
         client = TwitterApplication.getRestClient(); // singleton client
         populateTimeline();
+
+        ListView lvTweets = (ListView) findViewById(R.id.lvTweets);
+        // Attach the listener to the AdapterView onCreate
+        lvTweets.setOnScrollListener(new InfiniteScrollListener() {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount) {
+                // Triggered only when new data needs to be appended to the list
+                // Add whatever code is needed to append new items to your AdapterView
+                customLoadMoreDataFromApi(true);
+                // or customLoadMoreDataFromApi(totalItemsCount);
+            }
+        });
+    }
+
+    public void customLoadMoreDataFromApi (final boolean isPage) {
+        client.getHomeTimelineMore(new JsonHttpResponseHandler(){
+            // SUCCESS
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray json) {
+                if (isPage) {
+                    aTweets.clear();
+                    aTweets.addAll(Tweet.fromJSONArray(json));
+                    Toast.makeText(getApplicationContext(), "25 more tweets! Have fun!", Toast.LENGTH_SHORT).show();
+
+                }  }
+        });
     }
 
     // Send API request to get the timeline json
