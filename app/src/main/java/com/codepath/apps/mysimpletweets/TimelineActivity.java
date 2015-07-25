@@ -17,8 +17,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import android.app.Activity;
 
-public class TimelineActivity extends ActionBarActivity {
+public class TimelineActivity extends Activity {
 
     private TwitterClient client;
     private ArrayList<Tweet> tweets;
