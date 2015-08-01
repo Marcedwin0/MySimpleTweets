@@ -5,7 +5,9 @@ import android.widget.AbsListView;
 /**
  * Created by MDE on 7/23/2015.
  */
-public abstract class InfiniteScrollListener implements AbsListView.OnScrollListener {
+
+/**
+ public abstract class InfiniteScrollListener implements AbsListView.OnScrollListener {
     // The minimum amount of items to have below your current scroll position
     // before loading more.
     private int visibleThreshold = 5;
@@ -69,3 +71,5 @@ public abstract class InfiniteScrollListener implements AbsListView.OnScrollList
         // Don't take any action on changed
     }
 }
+ */
+
